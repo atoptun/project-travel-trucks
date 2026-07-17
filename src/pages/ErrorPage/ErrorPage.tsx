@@ -4,7 +4,7 @@ import WifiOffIcon from '@mui/icons-material/WifiOff';
 import { Box, Button, Container, Typography } from '@mui/material';
 import { isRouteErrorResponse, Link, useRouteError } from 'react-router-dom';
 
-import * as styles from './ErrorPage.styles.ts';
+import * as styles from './ErrorPage.styles';
 
 function ErrorPage() {
   const error = useRouteError();

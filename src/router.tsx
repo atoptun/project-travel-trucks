@@ -1,43 +1,43 @@
-import { lazy,Suspense, type ComponentType } from 'react';
+import { lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import { withSuspense } from './helpers';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 const AppLayout = lazy(() => import('./components/AppLayout/AppLayout'));
+const AppLayoutSuspense = withSuspense(AppLayout);
+
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const HomePageSuspense = withSuspense(HomePage);
+
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
+const NotFoundPageSuspense = withSuspense(NotFoundPage);
 
 const CampersPage = lazy(() => import('./pages/CampersPage/CampersPage'));
+const CampersPageSuspense = withSuspense(CampersPage);
+
 const CamperDetailsPage = lazy(
   () => import('./pages/CamperDetailsPage/CamperDetailsPage'),
 );
-
-
-export const withSuspense = (Component: ComponentType) => {
-  return (
-    <Suspense fallback={<p>loading...</p>}>
-      <Component />
-    </Suspense>
-  );
-};
+const CamperDetailsPageSuspense = withSuspense(CamperDetailsPage);
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: withSuspense(AppLayout),
+    element: <AppLayoutSuspense />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: withSuspense(HomePage) },
+      { index: true, element: <HomePageSuspense /> },
       {
         path: '/campers',
-        element: withSuspense(CampersPage),
+        element: <CampersPageSuspense />,
       },
       {
         path: '/campers/:id',
-        element: withSuspense(CamperDetailsPage),
+        element: <CamperDetailsPageSuspense />,
       },
 
-      { path: '*', element: withSuspense(NotFoundPage) },
+      { path: '*', element: <NotFoundPageSuspense /> },
     ],
   },
 ]);

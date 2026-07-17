@@ -1,5 +1,6 @@
 import js from '@eslint/js';
 import globals from 'globals';
+import importPlugin from 'eslint-plugin-import';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
@@ -7,18 +8,16 @@ import tseslint from 'typescript-eslint';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  {
+    ignores: ['dist', 'eslint.config.js', 'vite.config.ts'],
+  },
+  js.configs.recommended,
+  ...tseslint.configs.recommendedTypeChecked,
   {
     files: ['**/*.{ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      // tseslint.configs.recommended,
-      tseslint.configs.recommendedTypeChecked,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
     languageOptions: {
       globals: globals.browser,
+      // parser: tsParser,
       parserOptions: {
         project: ['./tsconfig.json'],
         tsconfigRootDir: import.meta.dirname,
@@ -27,20 +26,22 @@ export default defineConfig([
         sourceType: 'module',
       },
     },
+
     settings: {
       react: { version: 'detect' },
     },
     plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
       'simple-import-sort': simpleImportSort,
       import: importPlugin,
     },
     rules: {
+      ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
       ],
-      'react/prop-types': 'off',
-      'react-hooks/exhaustive-deps': 'warn',
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
       'import/no-duplicates': 'error',
