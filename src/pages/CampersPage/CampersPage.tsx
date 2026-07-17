@@ -35,11 +35,17 @@ function CampersPage() {
       {isNotFound && <p>Nothing found</p>}
       {isFetching && <p>Fetching ...</p>}
       {isError && <p>Something went wrong... Try later</p>}
-      {campers.length > 0 ? <CamperList campers={campers} /> : <p>Empty</p>}
-      {hasMore && (
-        <button type="button" onClick={handleMoreClick}>
-          Load more
-        </button>
+      {campers.length > 0 ? (
+        <>
+          <CamperList campers={campers} />
+          {hasMore && (
+            <button type="button" onClick={handleMoreClick}>
+              Load more
+            </button>
+          )}
+        </>
+      ) : (
+        <p>Empty</p>
       )}
     </>
   );

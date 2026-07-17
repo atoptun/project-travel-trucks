@@ -1,9 +1,7 @@
 import { Box, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '@/hooks';
-import { selectIsFavourite } from '@/redux/favorites/selectors';
-import { toggleFavorite } from '@/redux/favorites/slice';
+import { useFavorite } from '@/hooks';
 import type { CamperIntf } from '@/types';
 
 // import styles from './CamperCard.styles';
@@ -13,19 +11,15 @@ interface CamperCardProps {
 }
 
 function CamperCard({ camper }: CamperCardProps) {
-  const isFavorite = useAppSelector(selectIsFavourite(camper.id));
-  const dispatch = useAppDispatch();
-
-  const handleToggleFav = () => {
-    dispatch(toggleFavorite(camper.id));
-  };
+  const [isFavorite, toggleFav] = useFavorite(camper.id);
 
   return (
     <Box>
       <Link to={`/campers/${camper.id}`}>
         {camper.name} -- {camper.location}
       </Link>
-      <Button type="button" onClick={handleToggleFav}>
+      <Button type="button" onClick={toggleFav}>
+        // TODO: spec button
         {isFavorite ? 'fav' : 'not fav'}
       </Button>
     </Box>

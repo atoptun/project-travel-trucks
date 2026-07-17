@@ -1,8 +1,6 @@
 import { Button } from '@mui/material';
 
-import { useAppDispatch, useAppSelector } from '@/hooks';
-import { selectIsFavourite } from '@/redux/favorites/selectors';
-import { toggleFavorite } from '@/redux/favorites/slice';
+import { useFavorite } from '@/hooks';
 import type { CamperIntf } from '@/types';
 
 interface CamperDetailCardProps {
@@ -10,19 +8,18 @@ interface CamperDetailCardProps {
 }
 
 function CamperDetailCard({ camper }: CamperDetailCardProps) {
-  const dispatch = useAppDispatch();
+  const [isFavorite, toggleFavorite] = useFavorite(camper.id);
 
-  const isFavorite = useAppSelector(selectIsFavourite(camper.id));
-
-  const handleToggleFav = () => {
-    dispatch(toggleFavorite(camper.id));
-  };
+  // const handleToggleFav = () => {
+  //   toggleFavorite();
+  // };
   return (
     <>
       <div>CamperDetailCard</div>
       <p>{camper.id}</p>
       <p>{camper.name}</p>
-      <Button type="button" onClick={handleToggleFav}>
+      <Button type="button" onClick={toggleFavorite}>
+        // TODO: spec button
         {isFavorite ? 'fav' : 'not fav'}
       </Button>
     </>
