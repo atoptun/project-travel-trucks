@@ -11,7 +11,6 @@ export default defineConfig([
   {
     ignores: ['dist', 'eslint.config.js', 'vite.config.ts'],
   },
-  globalIgnores(['dist']),
   js.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   {
@@ -43,8 +42,8 @@ export default defineConfig([
         'warn',
         { allowConstantExport: true },
       ],
-      'simple-import-sort/imports': 'warn',
-      'simple-import-sort/exports': 'warn',
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
       'import/no-duplicates': 'error',
     },
   },
