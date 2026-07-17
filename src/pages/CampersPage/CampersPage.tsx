@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-
+import CamperList from '@/components/CamperList/CamperList';
 import FilterForm from '@/components/FilterForm/FilterForm';
 import { useFilters } from '@/hooks';
 import { useGetCampersQuery } from '@/redux/campers/apis';
@@ -36,26 +35,11 @@ function CampersPage() {
       {isNotFound && <p>Nothing found</p>}
       {isFetching && <p>Fetching ...</p>}
       {isError && <p>Something went wrong... Try later</p>}
-      {campers.length > 0 ? (
-        <>
-          <ul>
-            {campers.map(item => (
-              <li key={item.id}>
-                <Link to={`/campers/${item.id}`}>
-                  {item.name} -- {item.location}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          {hasMore && (
-            <button type="button" onClick={handleMoreClick}>
-              Load more
-            </button>
-          )}
-        </>
-      ) : (
-        <p>Empty</p>
+      {campers.length > 0 ? <CamperList campers={campers} /> : <p>Empty</p>}
+      {hasMore && (
+        <button type="button" onClick={handleMoreClick}>
+          Load more
+        </button>
       )}
     </>
   );

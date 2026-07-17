@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-// import { useAppDispatch, useAppSelector } from '@/hooks';
+import CamperDetailCard from '@/components/CamperDetailCard/CamperDetailCard';
 import { useGetCamperByIdQuery } from '@/redux/campers/apis';
 
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
@@ -25,11 +25,7 @@ function CamperDetailsPage() {
       <div>CamperDetailsPage</div>
       {isError && <p>Error</p>}
       {isLoading && <p>Loading...</p>}
-      {data && (
-        <p>
-          {data.id} - {data.name}
-        </p>
-      )}
+      {data && <CamperDetailCard camper={data} />}
     </>
   );
 }
