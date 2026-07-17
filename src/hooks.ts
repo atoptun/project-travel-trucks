@@ -1,7 +1,9 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
+import { selectIsFavourite } from './redux/favorites/selectors';
+import { toggleFavorite } from './redux/favorites/slice';
 import type { AppDispatch, RootState } from './redux/store';
 import type {
   CamperEngineType,
@@ -54,4 +56,17 @@ export const useFilters = () => {
   };
 
   return { filters, page, setFilters, loadMore, searchParams };
+};
+
+// ─── useFavorite ────────────────────────────────────────────────────────────────
+
+export const useFavorite = (camperId: string) => {
+  const dispatch = useAppDispatch();
+  const isFavorite = useAppSelector(selectIsFavourite(camperId));
+
+  const toggle = useCallback(() => {
+    dispatch(toggleFavorite(camperId));
+  }, [dispatch, camperId]);
+
+  return [isFavorite, toggle] as const;
 };
