@@ -36,7 +36,7 @@ function CampersPage() {
       {isNotFound && <p>Nothing found</p>}
       {isFetching && <p>Fetching ...</p>}
       {isError && <p>Something went wrong... Try latter</p>}
-      {campers.length >= 0 ? (
+      {campers.length > 0 ? (
         <>
           <ul>
             {campers.map(item => (

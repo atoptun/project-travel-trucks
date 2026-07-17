@@ -16,19 +16,40 @@ export const campersApi = createApi({
   keepUnusedDataFor: 300,
   endpoints: builder => ({
     getCampers: builder.query<ApiListResultIntf, CampersFilters>({
-      // query: args => ({
-      //   url: '/campers',
-      //   params: args,
-      // }),
       queryFn: async (args, _api, _extraOptions, baseQuery) => {
         const result = await baseQuery({ url: '/campers', params: args });
 
-        // mockapi.io returns error 404 if no filter result
-        if ('error' in result && result.error?.status === 404) {
-          return { data: { items: [], total: 0 } };
+        if (result.error) {
+          const status = result.error.status;
+
+          // mockapi.io returns error 404 if no filter result
+          if (status === 404) {
+            return { data: { items: [], total: 0 } };
+          }
+
+          console.error('Campers API query failed:', result.error);
+          return result;
         }
 
-        return result;
+        const data = result.data as ApiListResultIntf;
+        const isValidData =
+          data && typeof data.total === 'number' && Array.isArray(data.items);
+
+        if (!isValidData) {
+          console.error(
+            'Campers API returned invalid data structure:',
+            result.data,
+          );
+          return {
+            error: {
+              status: 'CUSTOM_ERROR',
+              error: 'Malformed response structure received from API',
+              data: result.data,
+            },
+          };
+        }
+
+        return { data };
       },
       serializeQueryArgs: ({ queryArgs }) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

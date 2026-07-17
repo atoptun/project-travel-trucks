@@ -9,26 +9,18 @@ import {
   REGISTER,
   REHYDRATE,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import storage from 'redux-persist/es/storage';
 
 import { campersApi } from './campers/apis';
-import favoriresReducer from './favorites/slice';
-
-const storageUnknown = storage as unknown;
-const actualStorage =
-  storageUnknown &&
-  typeof storageUnknown === 'object' &&
-  'default' in storageUnknown
-    ? (storageUnknown as { default: typeof storage }).default
-    : storage;
+import favoritesReducer from './favorites/slice';
 
 const favPersistConfig = {
   key: 'favorites',
-  storage: actualStorage,
+  storage: storage,
 };
 
 const rootReducer = combineReducers({
-  favorites: persistReducer(favPersistConfig, favoriresReducer),
+  favorites: persistReducer(favPersistConfig, favoritesReducer),
   [campersApi.reducerPath]: campersApi.reducer,
 });
 

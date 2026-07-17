@@ -50,7 +50,6 @@ export const useFilters = () => {
   };
 
   const loadMore = () => {
-    console.info('loadMore', page);
     setPage(p => p + 1);
   };
 

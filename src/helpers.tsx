@@ -7,11 +7,3 @@ export const withSuspense = <P extends object>(Component: ComponentType<P>) => {
     </Suspense>
   );
 };
-
-export const withSuspenseWithoutProps = (Component: ComponentType) => {
-  return (
-    <Suspense fallback={<p>loading...</p>}>
-      <Component />
-    </Suspense>
-  );
-};

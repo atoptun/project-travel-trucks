@@ -1,35 +1,43 @@
 import { lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { withSuspenseWithoutProps } from './helpers';
+import { withSuspense } from './helpers';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 const AppLayout = lazy(() => import('./components/AppLayout/AppLayout'));
+const AppLayoutSuspense = withSuspense(AppLayout);
+
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const HomePageSuspense = withSuspense(HomePage);
+
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
+const NotFoundPageSuspense = withSuspense(NotFoundPage);
 
 const CampersPage = lazy(() => import('./pages/CampersPage/CampersPage'));
+const CampersPageSuspense = withSuspense(CampersPage);
+
 const CamperDetailsPage = lazy(
   () => import('./pages/CamperDetailsPage/CamperDetailsPage'),
 );
+const CamperDetailsPageSuspense = withSuspense(CamperDetailsPage);
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: withSuspenseWithoutProps(AppLayout),
+    element: <AppLayoutSuspense />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: withSuspenseWithoutProps(HomePage) },
+      { index: true, element: <HomePageSuspense /> },
       {
         path: '/campers',
-        element: withSuspenseWithoutProps(CampersPage),
+        element: <CampersPageSuspense />,
       },
       {
         path: '/campers/:id',
-        element: withSuspenseWithoutProps(CamperDetailsPage),
+        element: <CamperDetailsPageSuspense />,
       },
 
-      { path: '*', element: withSuspenseWithoutProps(NotFoundPage) },
+      { path: '*', element: <NotFoundPageSuspense /> },
     ],
   },
 ]);

@@ -33,29 +33,38 @@ type FilterFormProps = Pick<
   'setFilters' | 'searchParams'
 >;
 
-function FilterForm({ setFilters, searchParams }: FilterFormProps) {
-  const defaultValues: FilterFormValues = {
-    location: '',
-    form: '',
-    engine: '',
-    transmission: '',
-  };
+const formOptions = Object.entries(CAMPER_FORM_LABELS).map(([id, label]) => ({
+  id,
+  label,
+}));
+const engineOptions = Object.entries(CAMPER_ENGINE_LABELS).map(
+  ([id, label]) => ({ id, label }),
+);
+const transmissionOptions = Object.entries(CAMPER_TRANSMISSION_LABELS).map(
+  ([id, label]) => ({ id, label }),
+);
 
+function FilterForm({ setFilters, searchParams }: FilterFormProps) {
   const formContext = useForm<FilterFormValues>({
-    defaultValues: defaultValues,
+    defaultValues: {
+      location: '',
+      form: '',
+      engine: '',
+      transmission: '',
+    },
   });
 
-  const { control, setValue } = formContext;
+  const { control, reset } = formContext;
 
   useEffect(() => {
-    setValue('location', searchParams.get('location') || '');
-    setValue('form', (searchParams.get('form') as CamperFormType) || '' || '');
-    setValue('engine', (searchParams.get('engine') as CamperEngineType) || '');
-    setValue(
-      'transmission',
-      (searchParams.get('transmission') as CamperTransmissionType) || '',
-    );
-  }, [searchParams, setValue]);
+    reset({
+      location: searchParams.get('location') || '',
+      form: (searchParams.get('form') as CamperFormType) || '',
+      engine: (searchParams.get('engine') as CamperEngineType) || '',
+      transmission:
+        (searchParams.get('transmission') as CamperTransmissionType) || '',
+    });
+  }, [searchParams, reset]);
 
   const handleSubmit = (data: FilterFormValues) => {
     const newFilter = {
@@ -68,19 +77,9 @@ function FilterForm({ setFilters, searchParams }: FilterFormProps) {
   };
 
   const handleClearFilters = () => {
+    reset({});
     setFilters({});
   };
-
-  const formOptions = Object.entries(CAMPER_FORM_LABELS).map(([id, label]) => ({
-    id,
-    label,
-  }));
-  const engineOptions = Object.entries(CAMPER_ENGINE_LABELS).map(
-    ([id, label]) => ({ id, label }),
-  );
-  const transmissionOptions = Object.entries(CAMPER_TRANSMISSION_LABELS).map(
-    ([id, label]) => ({ id, label }),
-  );
 
   return (
     <>

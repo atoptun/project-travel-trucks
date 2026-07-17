@@ -6,7 +6,7 @@ const initialState: FavouritesState = {
   ids: {},
 };
 
-const favoritesSlicer = createSlice({
+const favoritesSlice = createSlice({
   name: 'favorites',
   initialState,
   reducers: {
@@ -19,4 +19,4 @@ const favoritesSlicer = createSlice({
   },
 });
 
-export default favoritesSlicer.reducer;
+export default favoritesSlice.reducer;
