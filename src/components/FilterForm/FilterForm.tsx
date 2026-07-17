@@ -12,20 +12,20 @@ import {
   CAMPER_FORM_LABELS,
   CAMPER_TRANSMISSION_LABELS,
 } from '@/constants.ts';
-import { useFilters } from '@/hooks.ts';
+import { useFilters } from '@/hooks';
 import type {
   CamperEngineType,
   CamperFormType,
   CamperTransmissionType,
 } from '@/types';
 
-import { styles } from './FilterForm.styles.ts';
+import { styles } from './FilterForm.styles';
 
 interface FilterFormValues {
-  location: string;
-  form: CamperFormType | '' | null;
-  engine: CamperEngineType | '' | null;
-  transmission: CamperTransmissionType | '' | null;
+  location?: string;
+  form?: CamperFormType | '';
+  engine?: CamperEngineType | '';
+  transmission?: CamperTransmissionType | '';
 }
 
 type FilterFormProps = Pick<

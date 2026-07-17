@@ -83,5 +83,3 @@ export interface CampersFilters {
 export interface FavouritesState {
   ids: Record<string, boolean>;
 }
-
-//

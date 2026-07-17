@@ -35,7 +35,7 @@ function CampersPage() {
       <FilterForm setFilters={setFilters} searchParams={searchParams} />
       {isNotFound && <p>Nothing found</p>}
       {isFetching && <p>Fetching ...</p>}
-      {isError && <p>Something went wrong... Try latter</p>}
+      {isError && <p>Something went wrong... Try later</p>}
       {campers.length > 0 ? (
         <>
           <ul>

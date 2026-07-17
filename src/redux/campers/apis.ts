@@ -27,7 +27,6 @@ export const campersApi = createApi({
             return { data: { items: [], total: 0 } };
           }
 
-          console.error('Campers API query failed:', result.error);
           return result;
         }
 
