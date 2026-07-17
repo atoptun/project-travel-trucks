@@ -1,13 +1,8 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { type AppState } from '../../types'
+// import { createSelector } from '@reduxjs/toolkit';
 
-export const selectCampers = (state: AppState) => state.campers.items;
+// import { selectFilters } from '../filter/selectors';
+// import { buildCampersQueryArgs } from './helpers';
 
-export const selectCampersLoading = (state: AppState) => state.campers.isLoading;
-
-export const selectCampersError = (state: AppState) => state.campers.error;
-
-export const selectFilteredCampers = createSelector(
-  [selectCampers], //TODO:  + filter
-  (campers) => campers
-);
+// export const selectCampersArgs = createSelector([selectFilters], filters =>
+//   buildCampersQueryArgs(filters),
+// );

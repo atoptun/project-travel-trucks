@@ -1,37 +1,51 @@
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
-  // combineReducers,
-  configureStore
-} from '@reduxjs/toolkit';
-import filtersReducer from './filters/slice';
-import campersReducer from './campers/slice'
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  persistReducer,
+  persistStore,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-// localStorage
-// import { persistStore, persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
+import { campersApi } from './campers/apis';
+import favoriresReducer from './favorites/slice';
+// import filterReducer from './filter/slice';
 
+const storageUnknown = storage as unknown;
+const actualStorage =
+  storageUnknown &&
+  typeof storageUnknown === 'object' &&
+  'default' in storageUnknown
+    ? (storageUnknown as { default: typeof storage }).default
+    : storage;
 
-// const persistConfig = {
-//   key: 'root',
-//   storage,
-// };
-
-// const rootReducer = combineReducers({
-//     tasks: tasksReducer,
-//     filters: filtersReducer,
-// })
-
-const rootReducer = {
-  campers: campersReducer,
-  filters: filtersReducer,
+const favPersistConfig = {
+  key: 'favorites',
+  storage: actualStorage,
 };
 
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
+const rootReducer = combineReducers({
+  // campers: campersReducer,
+  // filters: filterReducer,
+  favorites: persistReducer(favPersistConfig, favoriresReducer),
+  [campersApi.reducerPath]: campersApi.reducer,
+});
 
 export const store = configureStore({
   reducer: rootReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(campersApi.middleware),
 });
+
+export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
-// export const persistor = persistStore(store);

@@ -1,8 +1,8 @@
-export interface AppState {
-  campers: CampersState;
-  filters: FiltersState;
-  // TODO: favorites
-}
+// interface AppState {
+//   campers: CampersState;
+//   filters: FiltersState;
+//   favorites: FavouritesState;
+// }
 
 export interface CampersState {
   items: CamperIntf[];
@@ -80,9 +80,20 @@ export const CAMPER_TRANSMISSION = {
 
 export type CamperTransmissionType = ValueOf<typeof CAMPER_TRANSMISSION>;
 
-export interface FiltersState {
-  city: string | null;
-  form: CamperFormType | null;
-  engine: CamperEngineType | null;
-  transmission: CamperTransmissionType | null;
+export interface CampersFilters {
+  page: number;
+  limit: number;
+
+  location?: string;
+  form?: CamperFormType;
+  engine?: CamperEngineType;
+  transmission?: CamperTransmissionType;
 }
+
+// Favourites types
+
+export interface FavouritesState {
+  ids: Record<string, boolean>;
+}
+
+//
