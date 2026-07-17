@@ -14,11 +14,11 @@ function CamperDetailsPage() {
     skip: !id,
   });
 
-  console.info(id, data, isLoading, isError, error);
+  // console.info(id, data, isLoading, isError, error);
 
   if (isError && error?.status === 404) return <NotFoundPage />;
 
-  console.info(data);
+  // console.info(data);
 
   return (
     <>

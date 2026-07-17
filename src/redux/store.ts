@@ -13,7 +13,6 @@ import storage from 'redux-persist/lib/storage';
 
 import { campersApi } from './campers/apis';
 import favoriresReducer from './favorites/slice';
-// import filterReducer from './filter/slice';
 
 const storageUnknown = storage as unknown;
 const actualStorage =
@@ -29,8 +28,6 @@ const favPersistConfig = {
 };
 
 const rootReducer = combineReducers({
-  // campers: campersReducer,
-  // filters: filterReducer,
   favorites: persistReducer(favPersistConfig, favoriresReducer),
   [campersApi.reducerPath]: campersApi.reducer,
 });

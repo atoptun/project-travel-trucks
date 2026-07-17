@@ -36,12 +36,10 @@ export const useFilters = () => {
         (searchParams.get('transmission') as CamperTransmissionType) ??
         undefined,
     };
-    // console.info('useFilters filter', result);
     return result;
   }, [searchParams, page]);
 
   const setFilters = (data: Partial<CampersFilters>) => {
-    // console.info('setFilters', data);
     const next = new URLSearchParams();
     if (data.location) next.set('location', data.location);
     if (data.form) next.set('form', data.form);

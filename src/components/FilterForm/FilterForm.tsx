@@ -16,7 +16,6 @@ import { useFilters } from '@/hooks.ts';
 import type {
   CamperEngineType,
   CamperFormType,
-  // CampersFilters,
   CamperTransmissionType,
 } from '@/types';
 
@@ -35,40 +34,20 @@ type FilterFormProps = Pick<
 >;
 
 function FilterForm({ setFilters, searchParams }: FilterFormProps) {
-  // const { filters, setFilters, searchParams } = useFilters();
-
   const defaultValues: FilterFormValues = {
     location: '',
     form: '',
     engine: '',
     transmission: '',
   };
-  // const defaultValues: FilterFormValues = {
-  //   location: filters.location || '',
-  //   form: filters.form || '',
-  //   engine: filters.engine || '',
-  //   transmission: filters.transmission || '',
-  // };
 
   const formContext = useForm<FilterFormValues>({
     defaultValues: defaultValues,
-    // values: defaultValues,
   });
 
   const { control, setValue } = formContext;
 
   useEffect(() => {
-    // console.info('useEffect filters', filters);
-    // reset(
-    //   {
-    //     location: searchParams.get('location') || '',
-    //     form: (searchParams.get('form') as CamperFormType) || '',
-    //     engine: (searchParams.get('engine') as CamperEngineType) || '',
-    //     transmission:
-    //       (searchParams.get('transmission') as CamperTransmissionType) || '',
-    //   },
-    //   { keepDirtyValues: false },
-    // );
     setValue('location', searchParams.get('location') || '');
     setValue('form', (searchParams.get('form') as CamperFormType) || '' || '');
     setValue('engine', (searchParams.get('engine') as CamperEngineType) || '');
@@ -79,19 +58,16 @@ function FilterForm({ setFilters, searchParams }: FilterFormProps) {
   }, [searchParams, setValue]);
 
   const handleSubmit = (data: FilterFormValues) => {
-    // console.info('onSubmit', data.location);
     const newFilter = {
       location: data.location || undefined,
       form: data.form || undefined,
       engine: data.engine || undefined,
       transmission: data.transmission || undefined,
     };
-    // console.info('newFilter', data);
     setFilters(newFilter);
   };
 
   const handleClearFilters = () => {
-    // reset(defaultValues);
     setFilters({});
   };
 
@@ -109,11 +85,7 @@ function FilterForm({ setFilters, searchParams }: FilterFormProps) {
   return (
     <>
       <div>FilterForm</div>
-      <FormContainer
-        formContext={formContext}
-        onSuccess={handleSubmit}
-        // handleSubmit={handleSubmit(onSubmit)}
-      >
+      <FormContainer formContext={formContext} onSuccess={handleSubmit}>
         <Box sx={styles.formContainer}>
           <Box>
             <Typography

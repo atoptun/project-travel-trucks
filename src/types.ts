@@ -1,15 +1,3 @@
-// interface AppState {
-//   campers: CampersState;
-//   filters: FiltersState;
-//   favorites: FavouritesState;
-// }
-
-export interface CampersState {
-  items: CamperIntf[];
-  isLoading: boolean;
-  error: string | null;
-}
-
 // Camper types
 
 export interface CamperIntf {

@@ -20,8 +20,8 @@ function CampersPage() {
     },
   );
 
-  console.info('CampersPage filters', filters);
-  console.info('CampersPage', campers);
+  // console.info('CampersPage filters', filters);
+  // console.info('CampersPage', campers);
 
   const isNotFound = campers.length === 0;
 
