@@ -8,7 +8,13 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    px: { xs: 1, sm: 8 },
+    px: { xs: 3, sm: 8 },
+  },
+  leftBlock: { flex: 1, display: 'flex', justifyContent: 'flex-start' },
+  rightBlock: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
 };
 
