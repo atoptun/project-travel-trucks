@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { type CamperIntf, type CampersFilters } from '../../types';
+import { type CamperIntf, type CampersFilters } from '../../types/common';
 
 const baseUrl = String(import.meta.env.VITE_CAMPERS_BASE_URL);
 

@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { withSuspense } from './helpers';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
+import TestPage from './pages/TestPage/TestPage';
 
 const AppLayout = lazy(() => import('./components/AppLayout/AppLayout'));
 const AppLayoutSuspense = withSuspense(AppLayout);
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
       {
         path: '/campers/:id',
         element: <CamperDetailsPageSuspense />,
+      },
+      // TODO: remove before prod
+      {
+        path: '/test',
+        element: <TestPage />,
       },
 
       { path: '*', element: <NotFoundPageSuspense /> },

@@ -5,7 +5,7 @@ import {
   type CamperEngineType,
   type CamperFormType,
   type CamperTransmissionType,
-} from './types';
+} from './types/common';
 
 export const CAMPER_FORM_LABELS: Record<CamperFormType, string> = {
   [CAMPER_FORM.ALCOVE]: 'Alcove',

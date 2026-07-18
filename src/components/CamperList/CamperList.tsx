@@ -1,4 +1,4 @@
-import type { CamperIntf } from '@/types';
+import type { CamperIntf } from '@/types/common';
 
 import CamperCard from '../CamperCard/CamperCard';
 // import styles from './CamperList.styles'

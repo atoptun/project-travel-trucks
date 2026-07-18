@@ -17,7 +17,7 @@ import type {
   CamperEngineType,
   CamperFormType,
   CamperTransmissionType,
-} from '@/types';
+} from '@/types/common';
 
 import { styles } from './FilterForm.styles';
 
