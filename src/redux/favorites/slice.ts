@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import type { FavouritesState } from '@/types';
+import type { FavouritesState } from '@/types/common';
 
 const initialState: FavouritesState = {
   ids: {},

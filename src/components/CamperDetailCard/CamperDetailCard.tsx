@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 
 import { useFavorite } from '@/hooks';
-import type { CamperIntf } from '@/types';
+import type { CamperIntf } from '@/types/common';
 
 interface CamperDetailCardProps {
   camper: CamperIntf;

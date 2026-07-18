@@ -10,7 +10,7 @@ import type {
   CamperFormType,
   CampersFilters,
   CamperTransmissionType,
-} from './types';
+} from './types/common';
 
 // Hooks instead of plain `useDispatch` and `useSelector`
 // to get the correct types for store's state and dispatch.

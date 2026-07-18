@@ -1,8 +1,8 @@
 import path from 'path';
 import { defineConfig } from 'vite';
-import react from // reactCompilerPreset
-'@vitejs/plugin-react';
+import react from '@vitejs/plugin-react'; // reactCompilerPreset
 import babel from '@rolldown/plugin-babel';
+import svgr from 'vite-plugin-svgr';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -11,6 +11,7 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    svgr(),
     babel({
       // presets: [reactCompilerPreset()]
     }),
