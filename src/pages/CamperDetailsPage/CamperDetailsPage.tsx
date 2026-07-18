@@ -16,7 +16,8 @@ function CamperDetailsPage() {
 
   // console.info(id, data, isLoading, isError, error);
 
-  if (isError && error?.status === 404) return <NotFoundPage />;
+  if (isError && 'status' in error && error?.status === 404)
+    return <NotFoundPage />;
 
   // console.info(data);
 

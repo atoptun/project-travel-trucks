@@ -3,6 +3,8 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react'; // reactCompilerPreset
 import babel from '@rolldown/plugin-babel';
 import svgr from 'vite-plugin-svgr';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -14,6 +16,26 @@ export default defineConfig({
     svgr(),
     babel({
       // presets: [reactCompilerPreset()]
+    }),
+    // VitePluginSvgSpritemap('./icons/**/*.svg', { injectSvgOnDev: true }),
+    ViteImageOptimizer({
+      cache: true,
+      cacheLocation: path.resolve(
+        __dirname,
+        'node_modules/.vite-image-optimizer-cache',
+      ),
+      png: { quality: 80 },
+      jpeg: { quality: 80 },
+      jpg: { quality: 80 },
+      webp: { quality: 75 },
+      avif: { quality: 75 },
+      svg: {},
+      // svg: {
+      //   plugins: [
+      //     { name: 'removeViewBox', active: false },
+      //     { name: 'sortAttrs', active: true },
+      //   ],
+      // },
     }),
   ],
   resolve: {

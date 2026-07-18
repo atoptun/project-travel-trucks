@@ -1,11 +1,11 @@
-import { Box } from '@mui/material';
+import HeroSection from '@/components/HeroSection/HeroSection';
 
 // import * as styles from './HomePage.styles';
 
 function HomePage() {
   return (
     <>
-      <Box>Home page</Box>
+      <HeroSection />
     </>
   );
 }
