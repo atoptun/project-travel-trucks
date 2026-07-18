@@ -1,10 +1,12 @@
+import { Grid } from '@mui/material';
+
 import CamperList from '@/components/CamperList/CamperList';
 import FilterForm from '@/components/FilterForm/FilterForm';
 import { useFilters } from '@/hooks';
 import { useGetCampersQuery } from '@/redux/campers/apis';
 
 function CampersPage() {
-  const { filters, loadMore, setFilters, searchParams } = useFilters();
+  const { filters, loadMore } = useFilters();
 
   const { campers, hasMore, isFetching, isError } = useGetCampersQuery(
     filters,
@@ -30,8 +32,9 @@ function CampersPage() {
 
   return (
     <>
+      <Grid></Grid>
       <div>CampersPage</div>
-      <FilterForm setFilters={setFilters} searchParams={searchParams} />
+      <FilterForm />
       {isNotFound && <p>Nothing found</p>}
       {isFetching && <p>Fetching ...</p>}
       {isError && <p>Something went wrong... Try later</p>}

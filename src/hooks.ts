@@ -25,11 +25,18 @@ const LIMIT = 5;
 
 export const useFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState(1);
+  const filterKey = searchParams.toString();
+
+  const [pageState, setPageState] = useState({
+    page: 1,
+    lastParams: filterKey,
+  });
+
+  const currentPage = pageState.lastParams === filterKey ? pageState.page : 1;
 
   const filters: CampersFilters = useMemo(() => {
     const result = {
-      page,
+      page: currentPage,
       limit: LIMIT,
       location: searchParams.get('location') ?? undefined,
       form: (searchParams.get('form') as CamperFormType) ?? undefined,
@@ -39,7 +46,7 @@ export const useFilters = () => {
         undefined,
     };
     return result;
-  }, [searchParams, page]);
+  }, [searchParams, currentPage]);
 
   const setFilters = (data: Partial<CampersFilters>) => {
     const next = new URLSearchParams();
@@ -48,14 +55,16 @@ export const useFilters = () => {
     if (data.engine) next.set('engine', data.engine);
     if (data.transmission) next.set('transmission', data.transmission);
     setSearchParams(next);
-    setPage(1);
   };
 
   const loadMore = () => {
-    setPage(p => p + 1);
+    setPageState({
+      page: currentPage + 1,
+      lastParams: filterKey,
+    });
   };
 
-  return { filters, page, setFilters, loadMore, searchParams };
+  return { filters, page: currentPage, setFilters, loadMore };
 };
 
 // ─── useFavorite ────────────────────────────────────────────────────────────────

@@ -19,7 +19,7 @@ function CamperDetailCard({ camper }: CamperDetailCardProps) {
       <p>{camper.id}</p>
       <p>{camper.name}</p>
       <Button type="button" onClick={toggleFavorite}>
-        // TODO: spec button
+        {/* // TODO: spec button */}
         {isFavorite ? 'fav' : 'not fav'}
       </Button>
     </>

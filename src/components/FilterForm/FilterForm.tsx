@@ -28,10 +28,9 @@ interface FilterFormValues {
   transmission?: CamperTransmissionType | '';
 }
 
-type FilterFormProps = Pick<
-  ReturnType<typeof useFilters>,
-  'setFilters' | 'searchParams'
->;
+type FilterFormProps = {
+  onClose?: VoidFunction;
+};
 
 const formOptions = Object.entries(CAMPER_FORM_LABELS).map(([id, label]) => ({
   id,
@@ -44,7 +43,9 @@ const transmissionOptions = Object.entries(CAMPER_TRANSMISSION_LABELS).map(
   ([id, label]) => ({ id, label }),
 );
 
-function FilterForm({ setFilters, searchParams }: FilterFormProps) {
+function FilterForm({ onClose }: FilterFormProps) {
+  const { filters, setFilters } = useFilters();
+
   const formContext = useForm<FilterFormValues>({
     defaultValues: {
       location: '',
@@ -58,13 +59,12 @@ function FilterForm({ setFilters, searchParams }: FilterFormProps) {
 
   useEffect(() => {
     reset({
-      location: searchParams.get('location') || '',
-      form: (searchParams.get('form') as CamperFormType) || '',
-      engine: (searchParams.get('engine') as CamperEngineType) || '',
-      transmission:
-        (searchParams.get('transmission') as CamperTransmissionType) || '',
+      location: filters.location || '',
+      form: filters.form || '',
+      engine: filters.engine || '',
+      transmission: filters.transmission || '',
     });
-  }, [searchParams, reset]);
+  }, [filters, reset]);
 
   const handleSubmit = (data: FilterFormValues) => {
     const newFilter = {
@@ -74,11 +74,13 @@ function FilterForm({ setFilters, searchParams }: FilterFormProps) {
       transmission: data.transmission || undefined,
     };
     setFilters(newFilter);
+    if (onClose) onClose();
   };
 
   const handleClearFilters = () => {
     reset({});
     setFilters({});
+    if (onClose) onClose();
   };
 
   return (
