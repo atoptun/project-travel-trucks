@@ -14,6 +14,7 @@ function AppNavMobile({ onClose }: AppNavMobileProps) {
         <ListItemButton
           component={NavLink}
           to="/"
+          autoFocus
           onClick={onClose}
           sx={styles.link}
         >

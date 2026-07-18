@@ -82,6 +82,9 @@ function AppHeader() {
             sx: { width: 250 },
           },
         }}
+        ModalProps={{
+          disableRestoreFocus: true,
+        }}
       >
         <AppNavMobile onClose={toggleMobileMenu} />
       </Drawer>
