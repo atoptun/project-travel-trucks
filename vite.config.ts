@@ -5,6 +5,7 @@ import babel from '@rolldown/plugin-babel';
 import svgr from 'vite-plugin-svgr';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap';
+import { imagetools } from 'vite-imagetools';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -17,6 +18,7 @@ export default defineConfig({
     babel({
       // presets: [reactCompilerPreset()]
     }),
+    imagetools(),
     // VitePluginSvgSpritemap('./icons/**/*.svg', { injectSvgOnDev: true }),
     ViteImageOptimizer({
       cache: true,

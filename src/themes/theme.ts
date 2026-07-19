@@ -113,7 +113,7 @@ export const theme = createTheme({
         {
           props: { variant: 'pillOutlined' },
           style: {
-            backgroundColor: 'transparent', // --white
+            backgroundColor: '#fff', // --white
             color: '#101828', // --main
             border: '1px solid #dadde1', // --gray-light
             '&:hover': {
