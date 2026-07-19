@@ -11,7 +11,7 @@ function AppLayout() {
     <Box sx={styles.baseBox}>
       <AppHeader />
 
-      <Box component={'main'} sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1 }}>
         <Suspense fallback={'loading...'}>
           <Outlet />
         </Suspense>

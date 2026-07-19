@@ -1,10 +1,13 @@
+import { Box, Button, Container, Grid } from '@mui/material';
+
 import CamperList from '@/components/CamperList/CamperList';
 import FilterForm from '@/components/FilterForm/FilterForm';
+import NotFound from '@/components/NotFound/NotFound';
 import { useFilters } from '@/hooks';
 import { useGetCampersQuery } from '@/redux/campers/apis';
 
 function CampersPage() {
-  const { filters, loadMore, setFilters, searchParams } = useFilters();
+  const { filters, loadMore } = useFilters();
 
   const { campers, hasMore, isFetching, isError } = useGetCampersQuery(
     filters,
@@ -19,35 +22,46 @@ function CampersPage() {
     },
   );
 
-  // console.info('CampersPage filters', filters);
-  // console.info('CampersPage', campers);
-
-  const isNotFound = campers.length === 0;
-
-  const handleMoreClick = () => {
-    loadMore();
-  };
-
   return (
-    <>
-      <div>CampersPage</div>
-      <FilterForm setFilters={setFilters} searchParams={searchParams} />
-      {isNotFound && <p>Nothing found</p>}
-      {isFetching && <p>Fetching ...</p>}
-      {isError && <p>Something went wrong... Try later</p>}
-      {campers.length > 0 ? (
-        <>
-          <CamperList campers={campers} />
-          {hasMore && (
-            <button type="button" onClick={handleMoreClick}>
-              Load more
-            </button>
+    <Container>
+      <Grid container spacing={8}>
+        <Grid
+          component="aside"
+          size={{ xs: 12, md: 4, lg: 3 }}
+          sx={{
+            display: { xs: 'none', md: 'block' },
+          }}
+        >
+          <Box sx={{ position: 'sticky', top: 100 }}>
+            <FilterForm />
+          </Box>
+        </Grid>
+        <Grid component="main" size={{ xs: 12, md: 8, lg: 9 }}>
+          {isFetching && <p>Fetching ...</p>}
+          {isError && <p>Something went wrong... Try later</p>}
+          {campers.length > 0 ? (
+            <>
+              <CamperList campers={campers} />
+              {hasMore && (
+                <Box sx={{ display: 'flex', justifyContent: 'center', my: 2 }}>
+                  <Button
+                    variant="pillOutlined"
+                    type="button"
+                    onClick={loadMore}
+                    sx={{ alignSelf: 'center' }}
+                  >
+                    Load more
+                  </Button>
+                </Box>
+              )}
+            </>
+          ) : (
+            <NotFound />
           )}
-        </>
-      ) : (
-        <p>Empty</p>
-      )}
-    </>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
+
 export default CampersPage;

@@ -1,3 +1,5 @@
+import { Grid } from '@mui/material';
+
 import type { CamperIntf } from '@/types/common';
 
 import CamperCard from '../CamperCard/CamperCard';
@@ -9,13 +11,13 @@ interface CamperListProps {
 
 function CamperList({ campers }: CamperListProps) {
   return (
-    <ul>
+    <Grid container spacing={4}>
       {campers.map(item => (
-        <li key={item.id}>
+        <Grid key={item.id} size={12}>
           <CamperCard camper={item} />
-        </li>
+        </Grid>
       ))}
-    </ul>
+    </Grid>
   );
 }
 export default CamperList;
