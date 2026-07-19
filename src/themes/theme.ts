@@ -65,8 +65,41 @@ export const theme = createTheme({
       greenHover: '#6d7b75',
     },
   },
-
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 768,
+      md: 1024,
+      lg: 1440,
+      xl: 1920,
+    },
+  },
   components: {
+    MuiContainer: {
+      defaultProps: {
+        maxWidth: 'lg',
+      },
+      styleOverrides: {
+        root: ({ theme }) => ({
+          [theme.breakpoints.up('xs')]: {
+            paddingLeft: theme.spacing(2),
+            paddingRight: theme.spacing(2),
+          },
+          [theme.breakpoints.up('sm')]: {
+            paddingLeft: theme.spacing(4),
+            paddingRight: theme.spacing(4),
+          },
+          [theme.breakpoints.up('md')]: {
+            paddingLeft: theme.spacing(6),
+            paddingRight: theme.spacing(6),
+          },
+          [theme.breakpoints.up('lg')]: {
+            paddingLeft: theme.spacing(8),
+            paddingRight: theme.spacing(8),
+          },
+        }),
+      },
+    },
     MuiButton: {
       defaultProps: {
         disableElevation: true,
@@ -75,11 +108,11 @@ export const theme = createTheme({
         root: {
           borderRadius: '999px',
           textTransform: 'none',
-          fontSize: '16px',
+          fontSize: '1em',
           fontWeight: 500,
           lineHeight: 1.5,
           letterSpacing: '-0.01em',
-          padding: '16px 32px',
+          padding: '1em 2em',
         },
       },
       variants: [

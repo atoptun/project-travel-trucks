@@ -3,6 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
   Box,
+  Container,
   Drawer,
   IconButton,
   Link,
@@ -30,30 +31,36 @@ function AppHeader() {
 
   return (
     <AppBar position="sticky" elevation={0} sx={styles.appBar}>
-      <Toolbar sx={styles.toolbar}>
-        <Box sx={styles.leftBlock}>
-          <LogoLink />
-        </Box>
-
-        <AppNav />
-
-        <Box sx={styles.rightBlock}>
-          <Box sx={{ display: { xs: 'flex', sm: 'none' }, gap: 1 }}>
-            {isCatalogPage && (
-              <FiltersIcon onClick={() => setMobileFiltersOpen(true)} />
-            )}
-
-            <MobileMenuIcon onClick={toggleMobileMenu} />
+      <Container>
+        <Toolbar sx={styles.toolbar}>
+          <Box sx={styles.leftBlock}>
+            <LogoLink />
           </Box>
-        </Box>
-      </Toolbar>
 
-      <MobileMenuWrapper isOpen={mobileMenuOpen} onToggle={toggleMobileMenu} />
+          <AppNav />
 
-      <MobileFiltersWrapper
-        isOpen={mobileFiltersOpen}
-        onClose={() => setMobileFiltersOpen(false)}
-      />
+          <Box sx={styles.rightBlock}>
+            <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
+              {isCatalogPage && (
+                <FiltersIcon onClick={() => setMobileFiltersOpen(true)} />
+              )}
+              <Box sx={{ display: { xs: 'flex', sm: 'none' }, gap: 1 }}>
+                <MobileMenuIcon onClick={toggleMobileMenu} />
+              </Box>
+            </Box>
+          </Box>
+        </Toolbar>
+
+        <MobileMenuWrapper
+          isOpen={mobileMenuOpen}
+          onToggle={toggleMobileMenu}
+        />
+
+        <MobileFiltersWrapper
+          isOpen={mobileFiltersOpen}
+          onClose={() => setMobileFiltersOpen(false)}
+        />
+      </Container>
     </AppBar>
   );
 }
