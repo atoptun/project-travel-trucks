@@ -13,6 +13,7 @@ import {
   useForm,
 } from 'react-hook-form-mui';
 
+import CloseIcon from '@/assets/icons/close.svg?react';
 import MapIcon from '@/assets/icons/map.svg?react';
 import {
   CAMPER_ENGINE_LABELS,
@@ -177,14 +178,14 @@ function FilterForm({ onClose }: FilterFormProps) {
           </Box>
 
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            <Button type="submit" variant="contained" fullWidth>
+            <Button type="submit" variant="pillFilled" fullWidth>
               Search
             </Button>
             <Button
               type="button"
-              variant="contained"
+              variant="pillOutlined"
               fullWidth
-              color="inherit"
+              startIcon={<SvgIcon component={CloseIcon} />}
               onClick={handleClearFilters}
             >
               Clear filters
