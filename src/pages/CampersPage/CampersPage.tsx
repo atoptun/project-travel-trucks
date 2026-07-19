@@ -25,18 +25,42 @@ function CampersPage() {
   return (
     <Container>
       <Grid container spacing={8}>
+        {/* Filters */}
         <Grid
           component="aside"
           size={{ xs: 12, md: 4, lg: 3 }}
           sx={{
             display: { xs: 'none', md: 'block' },
+            pt: { md: 6 },
           }}
         >
-          <Box sx={{ position: 'sticky', top: 100 }}>
+          <Box
+            sx={{
+              position: 'sticky',
+              top: 100,
+              maxHeight: 'calc(100vh - 124px)',
+              overflowY: 'auto',
+              '&::-webkit-scrollbar': {
+                width: '6px',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                borderRadius: '4px',
+              },
+            }}
+          >
             <FilterForm />
           </Box>
         </Grid>
-        <Grid component="main" size={{ xs: 12, md: 8, lg: 9 }}>
+
+        {/* Campers list */}
+        <Grid
+          component="main"
+          size={{ xs: 12, md: 8, lg: 9 }}
+          sx={{
+            pt: { xs: 2, sm: 4, md: 6 },
+          }}
+        >
           {isFetching && <p>Fetching ...</p>}
           {isError && <p>Something went wrong... Try later</p>}
           {campers.length > 0 ? (

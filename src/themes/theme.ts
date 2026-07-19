@@ -31,24 +31,6 @@ export const theme = createTheme({
       paper: '#f7f7f7', // --inputs
     },
 
-    /**
- * :root {
-	--main: #101828;
-	--text: #475467;
-	--white: #fff;
-	--inputs: #f7f7f7;
-	--badges: #f2f4f7;
-	--gray: #6c717b;
-	--gray-light: #dadde1;
-	--button: #e44848;
-	--button-hover: #d84343;
-	--rating: #ffc531;
-	--grey-green: #829b91;
-	--olive: #f0f1f1;
-	--green-hover: #6d7b75;
-}
- *  */
-
     custom: {
       main: '#101828',
       text: '#475467',
@@ -100,6 +82,8 @@ export const theme = createTheme({
         }),
       },
     },
+
+    // Buttons
     MuiButton: {
       defaultProps: {
         disableElevation: true,
@@ -138,6 +122,76 @@ export const theme = createTheme({
           },
         },
       ],
+    },
+
+    // Text inputs
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#ffffff', // --white
+          borderRadius: '12px',
+          transition: 'border-color 0.2s ease-in-out',
+
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'transparent',
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#829b91',
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#6d7b75',
+            borderWidth: '1px',
+          },
+          '&.MuiInputBase-adornedStart .MuiOutlinedInput-input': {
+            paddingLeft: '0',
+          },
+        },
+        input: {
+          padding: '1.1em 1.5em',
+          fontSize: '1em',
+          color: '#101828',
+          '&::placeholder': {
+            color: '#475467',
+            opacity: 1,
+          },
+        },
+      },
+    },
+
+    MuiFormGroup: {
+      styleOverrides: {
+        root: {
+          gap: '8px',
+          paddingLeft: '7px',
+        },
+      },
+    },
+
+    // Radio buttons
+    MuiRadio: {
+      styleOverrides: {
+        root: {
+          color: '#475467',
+          padding: '4px',
+          '&.Mui-checked': {
+            color: '#475467',
+          },
+        },
+      },
+    },
+
+    // Label text
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          height: '24px',
+        },
+        label: {
+          fontSize: '1em',
+          fontWeight: 400,
+          color: '#101828', // --main
+        },
+      },
     },
   },
 });
