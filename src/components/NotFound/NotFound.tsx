@@ -16,7 +16,8 @@ function NotFound() {
         component="img"
         srcSet={NotFoundSrcSet}
         sizes="(max-width: 767px) 240px, 488px"
-        alt="Campers of your dreams"
+        alt="No campers found"
+        loading="eager"
         sx={styles.image}
       />
       <Box>
