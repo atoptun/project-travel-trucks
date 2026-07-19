@@ -28,8 +28,9 @@ interface CamperCardProps {
 function CamperCard({ camper }: CamperCardProps) {
   // const [isFavorite, toggleFav] = useFavorite(camper.id);
 
+  // TODO: empty svg image ;
   const imgUrl =
-    camper?.gallery?.length > 0 ? camper.gallery[0].thumb : 'empty'; // TODO: empty svg image ;
+    camper?.gallery?.length > 0 ? camper.gallery[0].thumb : 'empty';
   const ratingInfo = `${camper.rating} (${camper.reviews.length} Reviews)`;
   return (
     <Card variant="outlined" component="article" sx={styles.card}>
