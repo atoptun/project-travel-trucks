@@ -1,4 +1,10 @@
-import { Box, Button, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  InputAdornment,
+  SvgIcon,
+  Typography,
+} from '@mui/material';
 import { useEffect } from 'react';
 import {
   FormContainer,
@@ -7,6 +13,7 @@ import {
   useForm,
 } from 'react-hook-form-mui';
 
+import MapIcon from '@/assets/icons/map.svg?react';
 import {
   CAMPER_ENGINE_LABELS,
   CAMPER_FORM_LABELS,
@@ -85,7 +92,6 @@ function FilterForm({ onClose }: FilterFormProps) {
 
   return (
     <>
-      <div>FilterForm</div>
       <FormContainer formContext={formContext} onSuccess={handleSubmit}>
         <Box sx={styles.formContainer}>
           <Box>
@@ -106,19 +112,32 @@ function FilterForm({ onClose }: FilterFormProps) {
               fullWidth
               variant="outlined"
               control={control}
-              // TODO: icon
+              sx={{
+                pl: 0,
+              }}
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start" sx={{ pl: 0 }}>
+                      <SvgIcon
+                        component={MapIcon}
+                        inheritViewBox
+                        sx={{ color: '#101828', fontSize: 20 }}
+                      />
+                    </InputAdornment>
+                  ),
+                },
+              }}
             />
+          </Box>
 
+          <Box sx={styles.filtersBox}>
             <Typography variant="h6" component="p" sx={{ fontWeight: 500 }}>
               Filters
             </Typography>
 
             <Box>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-                sx={{ fontWeight: 500 }}
-              >
+              <Typography variant="body1" color="textSecondary" sx={{ mb: 1 }}>
                 Camper form
               </Typography>
 
@@ -131,11 +150,7 @@ function FilterForm({ onClose }: FilterFormProps) {
             </Box>
 
             <Box>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-                sx={{ fontWeight: 500 }}
-              >
+              <Typography variant="body1" color="textSecondary" sx={{ mb: 1 }}>
                 Engine
               </Typography>
 
@@ -148,11 +163,7 @@ function FilterForm({ onClose }: FilterFormProps) {
             </Box>
 
             <Box>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-                sx={{ fontWeight: 500 }}
-              >
+              <Typography variant="body1" color="textSecondary" sx={{ mb: 1 }}>
                 Transmission
               </Typography>
 
@@ -163,21 +174,21 @@ function FilterForm({ onClose }: FilterFormProps) {
                 control={control}
               />
             </Box>
+          </Box>
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <Button type="submit" variant="contained" fullWidth>
-                Search
-              </Button>
-              <Button
-                type="button"
-                variant="contained"
-                fullWidth
-                color="inherit"
-                onClick={handleClearFilters}
-              >
-                Clear filters
-              </Button>
-            </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            <Button type="submit" variant="contained" fullWidth>
+              Search
+            </Button>
+            <Button
+              type="button"
+              variant="contained"
+              fullWidth
+              color="inherit"
+              onClick={handleClearFilters}
+            >
+              Clear filters
+            </Button>
           </Box>
         </Box>
       </FormContainer>
