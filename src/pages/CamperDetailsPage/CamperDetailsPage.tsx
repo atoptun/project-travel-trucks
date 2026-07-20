@@ -30,6 +30,7 @@ function CamperDetailsPage() {
       </Box>
     );
   }
+
   return (
     <>
       {/* // TODO: change loader, add skeleton  */}
@@ -49,15 +50,15 @@ function CamperDetailsPage() {
             </Box>
 
             <Box component="section" aria-label="Reviews and booking">
+              <Typography
+                variant="h5"
+                component="h2"
+                sx={{ fontWeight: 600, mb: 4 }}
+              >
+                Reviews
+              </Typography>
               <Grid container spacing={{ xs: 4, md: 8 }}>
                 <Grid size={{ xs: 12, md: 7, lg: 8 }}>
-                  <Typography
-                    variant="h5"
-                    component="h2"
-                    sx={{ fontWeight: 600, mb: 4 }}
-                  >
-                    Reviews
-                  </Typography>
                   <ReviewList reviews={data.reviews} />
                 </Grid>
 

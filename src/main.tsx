@@ -1,4 +1,5 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import { SnackbarProvider } from 'notistack';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -14,7 +15,16 @@ createRoot(document.getElementById('root')!).render(
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={theme}>
           <CssBaseline>
-            <App />
+            <SnackbarProvider
+              maxSnack={3}
+              autoHideDuration={5000}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+            >
+              <App />
+            </SnackbarProvider>
           </CssBaseline>
         </ThemeProvider>
       </PersistGate>
