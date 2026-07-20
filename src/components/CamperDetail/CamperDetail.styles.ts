@@ -17,7 +17,7 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     gap: 2,
-    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   mainSubTitle: {
     display: 'flex',

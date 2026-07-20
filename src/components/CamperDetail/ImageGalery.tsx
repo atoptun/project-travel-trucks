@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 
+import camperPlaceholderUrl from '@/assets/icons/placeholder-camper.svg';
 import type { GaleryImageIntf } from '@/types/common';
 
 interface ImageGaleryProps {
@@ -20,7 +21,13 @@ function ImageGalery({ images, activeImage, onImageSelect }: ImageGaleryProps) {
           height: { xs: '260px', sm: '380px', md: '505px' },
           objectFit: 'cover',
           borderRadius: '17px',
+
           backgroundColor: 'custom.inputs',
+          backgroundImage: `url("${camperPlaceholderUrl}")`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundSize: '40px 40px',
+
           transition: 'all 0.3s ease',
         }}
       />
@@ -59,6 +66,12 @@ function ImageGalery({ images, activeImage, onImageSelect }: ImageGaleryProps) {
                 borderRadius: '16px',
                 objectFit: 'cover',
                 cursor: 'pointer',
+
+                backgroundColor: 'custom.inputs',
+                backgroundImage: `url("${camperPlaceholderUrl}")`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                backgroundSize: '40px 40px',
 
                 border: '3px solid',
                 borderColor: isActive ? '#4E6151' : 'transparent',

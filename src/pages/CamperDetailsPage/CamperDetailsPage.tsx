@@ -3,11 +3,10 @@ import { useParams } from 'react-router-dom';
 
 import BookingForm from '@/components/BookingForm/BookingForm';
 import CamperDetail from '@/components/CamperDetail/CamperDetail';
-import FullPageLoader from '@/components/FullPageLoader/FullPageLoader';
+import Loader from '@/components/Loader/Loader';
+import NotFound from '@/components/NotFound/NotFound';
 import ReviewList from '@/components/ReviewList/ReviewList';
 import { useGetCamperByIdQuery } from '@/redux/campers/apis';
-
-import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 function CamperDetailsPage() {
   const { id } = useParams<{ id: string }>();
@@ -16,12 +15,8 @@ function CamperDetailsPage() {
     skip: !id,
   });
 
-  // console.info(id, data, isLoading, isError, error);
-
   if (isError && error && 'status' in error && error?.status === 404)
-    return <NotFoundPage />;
-
-  // console.info(data);
+    return <NotFound isPage404={true} />;
 
   if (isError) {
     return (
@@ -33,8 +28,7 @@ function CamperDetailsPage() {
 
   return (
     <>
-      {/* // TODO: change loader, add skeleton  */}
-      <FullPageLoader open={isLoading} />
+      {isLoading && <Loader />}
 
       {data && (
         <Box component="main" sx={{ py: { xs: 4, md: 8 } }}>

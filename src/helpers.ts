@@ -1,16 +1,5 @@
-import { type ComponentType, Suspense } from 'react';
-
 import { VEHICLE_BADGES_CONFIG, VEHICLE_SPECS_CONFIG } from './constants';
 import type { CamperIntf, VehicleBadge, VehicleSpec } from './types/common';
-
-export const withSuspense = <P extends object>(Component: ComponentType<P>) => {
-  return (props: P) => (
-    // TODO: need normal loader
-    <Suspense fallback={<p>loading...</p>}>
-      <Component {...props} />
-    </Suspense>
-  );
-};
 
 export const createVehicleBadgesList = (camper: CamperIntf): VehicleBadge[] => {
   const result = VEHICLE_BADGES_CONFIG.map(({ key, type, label }) => {

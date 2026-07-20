@@ -4,6 +4,7 @@ import MapIcon from '@/assets/icons/map.svg?react';
 import StarIcon from '@/assets/icons/star.svg?react';
 import type { CamperIntf } from '@/types/common';
 
+import FavoriteButton from '../FavoriteButton/FavoriteButton.tsx';
 import styles from './CamperDetail.styles.ts';
 
 interface MainInfoProps {
@@ -26,7 +27,7 @@ function MainInfo({ camper }: MainInfoProps) {
             >
               {camper.name}
             </Typography>
-            {/* // TODO: favorite icon */}
+            <FavoriteButton camperId={camper.id} />
           </Box>
 
           {/* Rating, Location */}

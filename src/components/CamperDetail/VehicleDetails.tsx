@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import { createVehicleBadgesList, createVehicleSpecsList } from '@/helpers';
+import { createVehicleBadgesList, createVehicleSpecsList } from '@/helpers.ts';
 import type { CamperIntf, VehicleBadge, VehicleSpec } from '@/types/common';
 
 import styles from './CamperDetail.styles.ts';

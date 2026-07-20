@@ -7,9 +7,26 @@ import { useFilters } from '@/hooks.ts';
 
 import styles from './NotFound.styles.ts';
 
-function NotFound() {
+interface NotFoundProps {
+  isPage404?: boolean;
+}
+
+function NotFound({ isPage404 = false }: NotFoundProps) {
   const { setFilters } = useFilters();
 
+  const messageContent = isPage404 ? (
+    <>
+      We couldn't find the campervan you're looking for.
+      <br />
+      It might have been moved, deleted, or the link is incorrect.
+    </>
+  ) : (
+    <>
+      We couldn't find any campers that match your filters.
+      <br />
+      Try adjusting your search or clearing some filters.
+    </>
+  );
   return (
     <Box sx={styles.wrapper}>
       <Box
@@ -27,26 +44,26 @@ function NotFound() {
           align="center"
           sx={{ fontWeight: 600, mb: 2 }}
         >
-          No campers found
+          {isPage404 ? 'Camper van not found' : 'No campers found'}
         </Typography>
         <Typography
           variant="body1"
           align="center"
           sx={{ fontWeight: 500, mb: 5 }}
         >
-          We couldn`t find any campers that match your filters.
-          <br />
-          Try adjusting your search or clearing some filters.
+          {messageContent}
         </Typography>
       </Box>
       <Box sx={styles.actions}>
-        <Button
-          variant="pillOutlined"
-          startIcon={<SvgIcon component={CloseIcon} />}
-          onClick={() => setFilters({})}
-        >
-          Clear fiilters
-        </Button>
+        {!isPage404 && (
+          <Button
+            variant="pillOutlined"
+            startIcon={<SvgIcon component={CloseIcon} />}
+            onClick={() => setFilters({})}
+          >
+            Clear fiilters
+          </Button>
+        )}
         <Button variant="pillFilled" component={Link} to="/campers">
           View all campers
         </Button>

@@ -5,7 +5,7 @@ const styles = {
     alignItems: 'center',
     backgroundColor: 'custom.inputs',
     borderRadius: '16px',
-    p: { xs: 1, sm: 3 },
+    p: { xs: 3, sm: 5 },
   },
   image: {
     width: '100%',
