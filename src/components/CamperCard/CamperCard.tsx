@@ -19,6 +19,7 @@ import StarIcon from '@/assets/icons/star.svg?react';
 // import { useFavorite } from '@/hooks';
 import type { CamperIntf } from '@/types/common';
 
+import FavoriteButton from '../FavoriteButton/FavoriteButton';
 import styles from './CamperCard.styles';
 
 interface CamperCardProps {
@@ -26,8 +27,6 @@ interface CamperCardProps {
 }
 
 function CamperCard({ camper }: CamperCardProps) {
-  // const [isFavorite, toggleFav] = useFavorite(camper.id);
-
   // TODO: empty svg image ;
   const imgUrl =
     camper?.gallery?.length > 0 ? camper.gallery[0].thumb : 'empty';
@@ -52,10 +51,18 @@ function CamperCard({ camper }: CamperCardProps) {
             <Typography component="h2" variant="h5" sx={styles.title}>
               {camper.name}
             </Typography>
-            <Typography component="span" variant="h5" sx={styles.title}>
-              {`€${camper.price.toFixed(2)}`}
-            </Typography>
-            {/* // TODO: favorite icon */}
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+              }}
+            >
+              <Typography component="span" variant="h5" sx={styles.title}>
+                {`€${camper.price.toFixed(2)}`}
+              </Typography>
+              <FavoriteButton camperId={camper.id} />
+            </Box>
           </Box>
 
           {/* Rating, Location */}
