@@ -1,6 +1,6 @@
 import { Button, Card, Typography } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import { FormContainer } from 'react-hook-form-mui';
+import { FormContainer, useForm } from 'react-hook-form-mui';
 
 import CustomFormInput from '../CustomFormInput/CustomFormInput';
 
@@ -9,17 +9,21 @@ interface BookingFormProps {
 }
 
 interface FormInputs {
+  camperId: string;
   name: string;
   email: string;
 }
 function BookingForm({ camperId }: BookingFormProps) {
   const { enqueueSnackbar } = useSnackbar();
+  const formContext = useForm<FormInputs>({
+    defaultValues: { name: '', email: '', camperId: camperId },
+  });
 
   const handleSuccess = (data: FormInputs) => {
     enqueueSnackbar(`Booking for '${data.name}' successful!`, {
       variant: 'success',
     });
-    console.info('Submitting booking for camper:', camperId, data);
+    formContext.reset();
   };
 
   return (
@@ -47,7 +51,7 @@ function BookingForm({ camperId }: BookingFormProps) {
       </Typography>
 
       <FormContainer
-        defaultValues={{ name: '', email: '' }}
+        formContext={formContext}
         onSuccess={handleSuccess}
         FormProps={{
           style: { display: 'flex', flexDirection: 'column', gap: '16px' },
