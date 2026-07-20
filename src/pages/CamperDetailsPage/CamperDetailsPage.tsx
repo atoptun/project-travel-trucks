@@ -1,32 +1,78 @@
+import { Box, Container, Grid, Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
-import CamperDetailCard from '@/components/CamperDetailCard/CamperDetailCard';
+import BookingForm from '@/components/BookingForm/BookingForm';
+import CamperDetail from '@/components/CamperDetail/CamperDetail';
+import FullPageLoader from '@/components/FullPageLoader/FullPageLoader';
+import ReviewList from '@/components/ReviewList/ReviewList';
 import { useGetCamperByIdQuery } from '@/redux/campers/apis';
 
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 function CamperDetailsPage() {
-  // const dispatch = useAppDispatch();
-  // const useAppSelector()
-
   const { id } = useParams<{ id: string }>();
+
   const { data, isError, isLoading, error } = useGetCamperByIdQuery(id || '', {
     skip: !id,
   });
 
   // console.info(id, data, isLoading, isError, error);
 
-  if (isError && 'status' in error && error?.status === 404)
+  if (isError && error && 'status' in error && error?.status === 404)
     return <NotFoundPage />;
 
   // console.info(data);
 
+  if (isError) {
+    return (
+      <Box component="main" sx={{ py: 8, textAlign: 'center' }}>
+        <Typography color="error">Something went wrong. Try later.</Typography>
+      </Box>
+    );
+  }
+
   return (
     <>
-      <div>CamperDetailsPage</div>
-      {isError && <p>Error</p>}
-      {isLoading && <p>Loading...</p>}
-      {data && <CamperDetailCard camper={data} />}
+      {/* // TODO: change loader, add skeleton  */}
+      <FullPageLoader open={isLoading} />
+
+      {data && (
+        <Box component="main" sx={{ py: { xs: 4, md: 8 } }}>
+          <Container>
+            <Box
+              component="section"
+              aria-label="Camper presentation"
+              sx={{
+                mb: { xs: 5, md: 11 },
+              }}
+            >
+              <CamperDetail camper={data} />
+            </Box>
+
+            <Box component="section" aria-label="Reviews and booking">
+              <Typography
+                variant="h5"
+                component="h2"
+                sx={{ fontWeight: 600, mb: 4 }}
+              >
+                Reviews
+              </Typography>
+              <Grid container spacing={{ xs: 4, md: 8 }}>
+                <Grid size={{ xs: 12, md: 7, lg: 8 }}>
+                  <ReviewList reviews={data.reviews} />
+                </Grid>
+
+                <Grid size={{ xs: 12, md: 5, lg: 4 }}>
+                  {/* Форму можна зробити липкою (sticky), щоб при скролі відгуків вона не зникала */}
+                  <Box sx={{ position: 'sticky', top: 100 }}>
+                    <BookingForm camperId={data?.id} />
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+          </Container>
+        </Box>
+      )}
     </>
   );
 }

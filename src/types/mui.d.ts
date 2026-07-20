@@ -10,8 +10,8 @@ declare module '@mui/material/styles' {
       badges: string;
       gray: string;
       grayLight: string;
-      button: string;
-      buttonHover: string;
+      error: string;
+      errorHover: string;
       rating: string;
       greyGreen: string;
       olive: string;

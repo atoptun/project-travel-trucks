@@ -83,3 +83,27 @@ export interface CampersFilters {
 export interface FavouritesState {
   ids: Record<string, boolean>;
 }
+
+// Vehicle specs
+
+export interface VehicleSpecConfigItem {
+  key: keyof CamperIntf;
+  label: string;
+  formatter: (val: unknown) => string;
+}
+
+export interface VehicleSpec {
+  label: string;
+  value: string;
+}
+
+export interface VehicleBadgeConfigItem {
+  key: keyof CamperIntf;
+  type: 'string' | 'boolean';
+  label: string;
+}
+
+export interface VehicleBadge {
+  key: keyof CamperIntf;
+  label: string;
+}

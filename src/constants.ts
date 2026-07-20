@@ -5,6 +5,8 @@ import {
   type CamperEngineType,
   type CamperFormType,
   type CamperTransmissionType,
+  type VehicleBadgeConfigItem,
+  type VehicleSpecConfigItem,
 } from './types/common';
 
 export const CAMPER_FORM_LABELS: Record<CamperFormType, string> = {
@@ -28,3 +30,55 @@ export const CAMPER_TRANSMISSION_LABELS: Record<
   [CAMPER_TRANSMISSION.AUTOMATIC]: 'Automatic',
   [CAMPER_TRANSMISSION.MANUAL]: 'Manual',
 };
+
+//  TODO: formatter for values like '3.65m" "30l/100km"
+export const VEHICLE_SPECS_CONFIG: VehicleSpecConfigItem[] = [
+  {
+    key: 'form',
+    label: 'Form',
+    formatter: (val: unknown) => {
+      const form = val as CamperFormType;
+      const name = CAMPER_FORM_LABELS[form];
+      return name ?? 'Unknown';
+    },
+  },
+  {
+    key: 'length',
+    label: 'Length',
+    formatter: (val: unknown) => String(val),
+  },
+  {
+    key: 'width',
+    label: 'Width',
+    formatter: (val: unknown) => String(val),
+  },
+  {
+    key: 'height',
+    label: 'Height',
+    formatter: (val: unknown) => String(val),
+  },
+  {
+    key: 'tank',
+    label: 'Tank',
+    formatter: (val: unknown) => String(val),
+  },
+  {
+    key: 'consumption',
+    label: 'Consumption',
+    formatter: (val: unknown) => String(val),
+  },
+];
+
+export const VEHICLE_BADGES_CONFIG: VehicleBadgeConfigItem[] = [
+  { key: 'transmission', type: 'string', label: 'Unknown' },
+  { key: 'engine', type: 'string', label: 'Unknown' },
+  { key: 'AC', type: 'boolean', label: 'AC' },
+  { key: 'bathroom', type: 'boolean', label: 'Bathroom' },
+  { key: 'kitchen', type: 'boolean', label: 'Kitchen' },
+  { key: 'TV', type: 'boolean', label: 'TV' },
+  { key: 'radio', type: 'boolean', label: 'Radio' },
+  { key: 'refrigerator', type: 'boolean', label: 'Refrigerator' },
+  { key: 'microwave', type: 'boolean', label: 'Microwave' },
+  { key: 'gas', type: 'boolean', label: 'Gas' },
+  { key: 'water', type: 'boolean', label: 'Water' },
+];
