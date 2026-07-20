@@ -58,7 +58,7 @@ function CamperDetailsPage() {
                   >
                     Reviews
                   </Typography>
-                  <ReviewList reviews={data?.reviews} />
+                  <ReviewList reviews={data.reviews} />
                 </Grid>
 
                 <Grid size={{ xs: 12, md: 5, lg: 4 }}>
