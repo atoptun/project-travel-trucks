@@ -1,9 +1,8 @@
-import { lazy } from 'react';
+import { type ComponentType, lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { withSuspense } from './helpers';
+import Loader from './components/Loader/Loader';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
-import TestPage from './pages/TestPage/TestPage';
 
 const AppLayout = lazy(() => import('./components/AppLayout/AppLayout'));
 const AppLayoutSuspense = withSuspense(AppLayout);
@@ -37,11 +36,6 @@ const router = createBrowserRouter([
         path: '/campers/:id',
         element: <CamperDetailsPageSuspense />,
       },
-      // TODO: remove before prod
-      {
-        path: '/test',
-        element: <TestPage />,
-      },
 
       { path: '*', element: <NotFoundPageSuspense /> },
     ],
@@ -53,3 +47,11 @@ function AppRouter() {
 }
 
 export default AppRouter;
+
+function withSuspense<P extends object>(Component: ComponentType<P>) {
+  return (props: P) => (
+    <Suspense fallback={<Loader />}>
+      <Component {...props} />
+    </Suspense>
+  );
+}
