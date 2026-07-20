@@ -16,7 +16,6 @@ import AutomaticIcon from '@/assets/icons/automatic.svg?react';
 import MapIcon from '@/assets/icons/map.svg?react';
 import PetrolIcon from '@/assets/icons/petrol.svg?react';
 import StarIcon from '@/assets/icons/star.svg?react';
-// import { useFavorite } from '@/hooks';
 import type { CamperIntf } from '@/types/common';
 
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
@@ -27,7 +26,6 @@ interface CamperCardProps {
 }
 
 function CamperCard({ camper }: CamperCardProps) {
-  // TODO: empty svg image ;
   const imgUrl =
     camper?.gallery?.length > 0 ? camper.gallery[0].thumb : 'empty';
   const ratingInfo = `${camper.rating} (${camper.reviews.length} Reviews)`;

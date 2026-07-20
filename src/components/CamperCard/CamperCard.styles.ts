@@ -1,3 +1,5 @@
+import camperPlaceholderUrl from '@/assets/icons/placeholder-camper.svg';
+
 const styles = {
   card: {
     display: 'flex',
@@ -29,6 +31,13 @@ const styles = {
     flex: '1 1 219px',
     height: 240,
     maxWidth: { xs: '100%', sm: 219 },
+
+    backgroundColor: 'custom.inputs',
+    backgroundImage: `url("${camperPlaceholderUrl}")`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundSize: '40px 40px',
+
     '@supports (container-type: inline-size)': {
       width: '100%',
       aspectRatio: '16/10',

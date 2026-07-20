@@ -31,7 +31,11 @@ export const CAMPER_TRANSMISSION_LABELS: Record<
   [CAMPER_TRANSMISSION.MANUAL]: 'Manual',
 };
 
-//  TODO: formatter for values like '3.65m" "30l/100km"
+function formatSpecs(text: string): string {
+  // Add space between number and symbol
+  return text.replace(/(?<=\d)(?=[a-zA-Z/])/g, ' ');
+}
+
 export const VEHICLE_SPECS_CONFIG: VehicleSpecConfigItem[] = [
   {
     key: 'form',
@@ -45,27 +49,27 @@ export const VEHICLE_SPECS_CONFIG: VehicleSpecConfigItem[] = [
   {
     key: 'length',
     label: 'Length',
-    formatter: (val: unknown) => String(val),
+    formatter: (val: unknown) => formatSpecs(String(val)),
   },
   {
     key: 'width',
     label: 'Width',
-    formatter: (val: unknown) => String(val),
+    formatter: (val: unknown) => formatSpecs(String(val)),
   },
   {
     key: 'height',
     label: 'Height',
-    formatter: (val: unknown) => String(val),
+    formatter: (val: unknown) => formatSpecs(String(val)),
   },
   {
     key: 'tank',
     label: 'Tank',
-    formatter: (val: unknown) => String(val),
+    formatter: (val: unknown) => formatSpecs(String(val)),
   },
   {
     key: 'consumption',
     label: 'Consumption',
-    formatter: (val: unknown) => String(val),
+    formatter: (val: unknown) => formatSpecs(String(val)),
   },
 ];
 

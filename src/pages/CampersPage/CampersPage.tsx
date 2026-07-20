@@ -1,4 +1,6 @@
 import { Box, Button, Container, Grid } from '@mui/material';
+import { useSnackbar } from 'notistack';
+import { useEffect } from 'react';
 
 import CamperList from '@/components/CamperList/CamperList';
 import FilterForm from '@/components/FilterForm/FilterForm';
@@ -10,6 +12,7 @@ import { useGetCampersQuery } from '@/redux/campers/apis';
 import styles from './CampersPage.styles.ts';
 
 function CampersPage() {
+  const { enqueueSnackbar } = useSnackbar();
   const { filters, loadMore } = useFilters();
 
   const { campers, hasMore, isFetching, isError } = useGetCampersQuery(
@@ -24,6 +27,14 @@ function CampersPage() {
       }),
     },
   );
+
+  useEffect(() => {
+    if (isError) {
+      enqueueSnackbar('Something went wrong... Try later', {
+        variant: 'error',
+      });
+    }
+  }, [isError, enqueueSnackbar]);
 
   return (
     <>
@@ -50,11 +61,10 @@ function CampersPage() {
             component="main"
             size={{ xs: 12, md: 8, lg: 9 }}
             sx={{
+              position: 'relative',
               pt: { xs: 2, sm: 4, md: 6 },
             }}
           >
-            {/* //TODO: show error by Snackbar or notistack, also remove others libs*/}
-            {isError && <p>Something went wrong... Try later</p>}
             {isFetching && campers.length === 0 ? null : campers.length > 0 ? (
               <>
                 <CamperList campers={campers} />
