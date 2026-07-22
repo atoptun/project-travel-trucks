@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
+import { useGetCampersQuery } from './redux/campers/apis';
 import { selectIsFavourite } from './redux/favorites/selectors';
 import { toggleFavorite } from './redux/favorites/slice';
 import type { AppDispatch, RootState } from './redux/store';
@@ -48,6 +49,8 @@ export const useFilters = () => {
     return result;
   }, [searchParams, currentPage]);
 
+  const filtersHash = searchParams.toString();
+
   const setFilters = (data: Partial<CampersFilters>) => {
     const next = new URLSearchParams();
     if (data.location) next.set('location', data.location);
@@ -64,14 +67,37 @@ export const useFilters = () => {
     });
   };
 
-  return { filters, page: currentPage, setFilters, loadMore };
+  return { filters, filtersHash, page: currentPage, setFilters, loadMore };
+};
+
+// ─── useCampers ────────────────────────────────────────────────────────────────
+
+export const useCampers = () => {
+  const { filters } = useFilters();
+
+  return useGetCampersQuery(filters, {
+    selectFromResult: ({ data, isFetching, isError, error }) => {
+      const items = data?.items ?? [];
+      const total = data?.total ?? 0;
+
+      return {
+        campers: items,
+        hasMore: total > items.length,
+        isFetching,
+        isError,
+        error,
+      };
+    },
+  });
 };
 
 // ─── useFavorite ────────────────────────────────────────────────────────────────
 
 export const useFavorite = (camperId: string) => {
   const dispatch = useAppDispatch();
-  const isFavorite = useAppSelector(selectIsFavourite(camperId));
+  const isFavorite = useAppSelector(state =>
+    selectIsFavourite(state, camperId),
+  );
 
   const toggle = useCallback(() => {
     dispatch(toggleFavorite(camperId));
