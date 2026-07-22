@@ -1,22 +1,28 @@
 import { Grid } from '@mui/material';
 
-import type { CamperIntf } from '@/types/common';
+import { useCampers } from '@/hooks';
 
 import CamperCard from '../CamperCard/CamperCard';
-// import styles from './CamperList.styles'
+import NotFound from '../NotFound/NotFound';
 
-interface CamperListProps {
-  campers: CamperIntf[];
-}
+function CamperList() {
+  const { campers, isFetching } = useCampers();
 
-function CamperList({ campers }: CamperListProps) {
+  if (isFetching && campers.length === 0) return null;
+
   return (
-    <Grid container spacing={4}>
-      {campers.map(item => (
-        <Grid key={item.id} size={12}>
-          <CamperCard camper={item} />
-        </Grid>
-      ))}
+    <Grid container spacing={4} component="ul">
+      {campers.length > 0 ? (
+        <>
+          {campers.map(item => (
+            <Grid key={item.id} size={12} component="li">
+              <CamperCard camper={item} />
+            </Grid>
+          ))}
+        </>
+      ) : (
+        <NotFound />
+      )}
     </Grid>
   );
 }
