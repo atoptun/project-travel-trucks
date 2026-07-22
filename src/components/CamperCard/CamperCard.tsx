@@ -89,15 +89,30 @@ function CamperCard({ camper }: CamperCardProps) {
         </Box>
 
         {/* Description */}
-        <Typography variant="body1" color="textSecondary">
+        <Typography
+          variant="body1"
+          color="textSecondary"
+          sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: { xs: 5, sm: 3 },
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
+        >
           {camper.description}
         </Typography>
 
         {/* Badges */}
-        <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-          <Badge label={camper.engine} Icon={PetrolIcon}></Badge>
-          <Badge label={camper.transmission} Icon={AutomaticIcon}></Badge>
-          <Badge label={camper.form} Icon={AlcoveIcon}></Badge>
+        <Box component="ul" sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+          <Box component="li" key={camper.engine} sx={{ minWidth: 0 }}>
+            <Badge label={camper.engine} Icon={PetrolIcon}></Badge>
+          </Box>
+          <Box component="li" key={camper.transmission} sx={{ minWidth: 0 }}>
+            <Badge label={camper.transmission} Icon={AutomaticIcon}></Badge>
+          </Box>
+          <Box component="li" key={camper.form} sx={{ minWidth: 0 }}>
+            <Badge label={camper.form} Icon={AlcoveIcon}></Badge>
+          </Box>
         </Box>
 
         {/* Actions */}

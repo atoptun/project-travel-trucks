@@ -95,10 +95,11 @@ function FilterForm({ onClose }: FilterFormProps) {
     <>
       <FormContainer formContext={formContext} onSuccess={handleSubmit}>
         <Box sx={styles.formContainer}>
-          <Box>
+          <Box component="fieldset">
             <Typography
               variant="body2"
               color="textSecondary"
+              component="legend"
               sx={{
                 mb: 1,
                 fontWeight: 500,
@@ -133,12 +134,17 @@ function FilterForm({ onClose }: FilterFormProps) {
           </Box>
 
           <Box sx={styles.filtersBox}>
-            <Typography variant="h6" component="p" sx={{ fontWeight: 500 }}>
+            <Typography variant="h6" component="h2" sx={{ fontWeight: 500 }}>
               Filters
             </Typography>
 
-            <Box>
-              <Typography variant="body1" color="textSecondary" sx={{ mb: 1 }}>
+            <Box component="fieldset">
+              <Typography
+                variant="body1"
+                color="textSecondary"
+                component="legend"
+                sx={{ mb: 1 }}
+              >
                 Camper form
               </Typography>
 
@@ -150,8 +156,13 @@ function FilterForm({ onClose }: FilterFormProps) {
               />
             </Box>
 
-            <Box>
-              <Typography variant="body1" color="textSecondary" sx={{ mb: 1 }}>
+            <Box component="fieldset">
+              <Typography
+                variant="body1"
+                color="textSecondary"
+                component="legend"
+                sx={{ mb: 1 }}
+              >
                 Engine
               </Typography>
 
@@ -163,8 +174,13 @@ function FilterForm({ onClose }: FilterFormProps) {
               />
             </Box>
 
-            <Box>
-              <Typography variant="body1" color="textSecondary" sx={{ mb: 1 }}>
+            <Box component="fieldset">
+              <Typography
+                variant="body1"
+                color="textSecondary"
+                component="legend"
+                sx={{ mb: 1 }}
+              >
                 Transmission
               </Typography>
 

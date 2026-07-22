@@ -1,4 +1,4 @@
-import { Link, Stack } from '@mui/material';
+import { Link, List, ListItem, Stack } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
 import styles from './AppNav.styles';
@@ -11,12 +11,18 @@ function AppNav() {
       spacing={4}
       sx={{ display: { xs: 'none', sm: 'flex' } }}
     >
-      <Link component={NavLink} to="/" sx={styles.link}>
-        Home
-      </Link>
-      <Link component={NavLink} to="/campers" sx={styles.link}>
-        Campers
-      </Link>
+      <List sx={{ display: 'flex' }}>
+        <ListItem>
+          <Link component={NavLink} to="/" sx={styles.link}>
+            Home
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link component={NavLink} to="/campers" sx={styles.link}>
+            Campers
+          </Link>
+        </ListItem>
+      </List>
     </Stack>
   );
 }

@@ -1,4 +1,5 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
+import { visuallyHidden } from '@mui/utils';
 import { useParams } from 'react-router-dom';
 
 import BookingForm from '@/components/BookingForm/BookingForm';
@@ -33,6 +34,10 @@ function CamperDetailsPage() {
       {data && (
         <Box component="main" sx={{ py: { xs: 4, md: 8 } }}>
           <Container>
+            <Typography
+              component="h1"
+              sx={visuallyHidden}
+            >{`${data.name} campervan details and booking`}</Typography>
             <Box
               component="section"
               aria-label="Camper presentation"
@@ -43,7 +48,7 @@ function CamperDetailsPage() {
               <CamperDetail camper={data} />
             </Box>
 
-            <Box component="section" aria-label="Reviews and booking">
+            <Box aria-label="Reviews and booking">
               <Typography
                 variant="h5"
                 component="h2"
@@ -52,13 +57,15 @@ function CamperDetailsPage() {
                 Reviews
               </Typography>
               <Grid container spacing={{ xs: 4, md: 8 }}>
-                <Grid size={{ xs: 12, md: 7, lg: 8 }}>
+                <Grid component="section" size={{ xs: 12, md: 7, lg: 8 }}>
                   <ReviewList reviews={data.reviews} />
                 </Grid>
 
                 <Grid size={{ xs: 12, md: 5, lg: 4 }}>
-                  {/* Форму можна зробити липкою (sticky), щоб при скролі відгуків вона не зникала */}
-                  <Box sx={{ position: 'sticky', top: 100 }}>
+                  <Box
+                    component="section"
+                    sx={{ position: 'sticky', top: 100 }}
+                  >
                     <BookingForm camperId={data?.id} />
                   </Box>
                 </Grid>

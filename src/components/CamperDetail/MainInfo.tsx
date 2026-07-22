@@ -15,13 +15,13 @@ function MainInfo({ camper }: MainInfoProps) {
   const ratingInfo = `${camper.rating} (${camper.reviews.length} Reviews)`;
 
   return (
-    <Card variant="outlined" sx={styles.mainCard}>
+    <Card component="section" variant="outlined" sx={styles.mainCard}>
       <CardContent sx={styles.mainContent}>
         {/* Title */}
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
           <Box sx={styles.mainTitleWrapper}>
             <Typography
-              component="h1"
+              component="h2"
               variant="h5"
               sx={{ fontWeight: 600, lineHeight: 1.33 }}
             >

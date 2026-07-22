@@ -19,6 +19,7 @@ function ReviewList({ reviews = [] }: ReviewListProps) {
 
   return (
     <Box
+      component="ul"
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -27,7 +28,9 @@ function ReviewList({ reviews = [] }: ReviewListProps) {
       }}
     >
       {reviews.map((review, index) => (
-        <ReviewItem key={index} review={review} />
+        <Box component="li" key={index}>
+          <ReviewItem review={review} />
+        </Box>
       ))}
     </Box>
   );

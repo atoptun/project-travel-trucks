@@ -70,12 +70,17 @@ export default AppHeader;
 
 function LogoLink() {
   return (
-    <Link component={LinkDom} to="/" sx={{ display: 'block' }}>
+    <Link
+      component={LinkDom}
+      to="/"
+      sx={{ display: 'block' }}
+      aria-label="Travel Trucks, main page"
+    >
       <SvgIcon
         component={LogoIcon}
         inheritViewBox
         sx={{ width: 136 }}
-        aria-label="Travel Truck"
+        aria-hidden="true"
       />
     </Link>
   );

@@ -14,18 +14,17 @@ createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={theme}>
-          <CssBaseline>
-            <SnackbarProvider
-              maxSnack={3}
-              autoHideDuration={5000}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-            >
-              <App />
-            </SnackbarProvider>
-          </CssBaseline>
+          <CssBaseline />
+          <SnackbarProvider
+            maxSnack={3}
+            autoHideDuration={5000}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+          >
+            <App />
+          </SnackbarProvider>
         </ThemeProvider>
       </PersistGate>
     </Provider>
