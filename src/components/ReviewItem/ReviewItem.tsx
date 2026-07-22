@@ -23,8 +23,12 @@ function ReviewItem({ review }: ReviewItemProps) {
       }}
     >
       {/* Caption */}
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+      <Box
+        component="header"
+        sx={{ display: 'flex', alignItems: 'center', gap: 2 }}
+      >
         <Avatar
+          aria-hidden="true"
           sx={{
             width: 60,
             height: 60,
@@ -39,6 +43,7 @@ function ReviewItem({ review }: ReviewItemProps) {
 
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
           <Typography
+            component="h3"
             variant="body1"
             sx={{ fontWeight: 500, color: 'custom.main' }}
           >
@@ -70,6 +75,7 @@ function ReviewItem({ review }: ReviewItemProps) {
       </Box>
 
       <Typography
+        component="p"
         variant="body1"
         sx={{
           color: 'custom.text',

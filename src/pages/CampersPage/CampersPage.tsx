@@ -1,4 +1,5 @@
-import { Box, Button, Container, Grid } from '@mui/material';
+import { Box, Button, Container, Grid, Typography } from '@mui/material';
+import { visuallyHidden } from '@mui/utils';
 import { useSnackbar } from 'notistack';
 import { useEffect, useRef } from 'react';
 
@@ -41,7 +42,7 @@ function CampersPage() {
       <FullPageLoader open={isFetching} />
 
       <Container>
-        <Grid container spacing={8} ref={listRef}>
+        <Grid container spacing={8} component="main" ref={listRef}>
           {/* Filters */}
           <Grid
             component="aside"
@@ -58,13 +59,16 @@ function CampersPage() {
 
           {/* Campers list */}
           <Grid
-            component="main"
+            component="section"
             size={{ xs: 12, md: 8, lg: 9 }}
             sx={{
               position: 'relative',
               pt: { xs: 2, sm: 4, md: 6 },
             }}
           >
+            <Typography component="h1" sx={visuallyHidden}>
+              Camper Rentals
+            </Typography>
             <CamperList />
             {hasMore && (
               <Box sx={{ display: 'flex', justifyContent: 'center', my: 2 }}>

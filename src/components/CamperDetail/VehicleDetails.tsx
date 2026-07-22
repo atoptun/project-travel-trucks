@@ -22,7 +22,7 @@ function VehicleDetails({ camper }: VehicleDetailsProps) {
   const badges = createVehicleBadgesList(camper);
 
   return (
-    <Card variant="outlined" sx={styles.detailsCard}>
+    <Card component="section" variant="outlined" sx={styles.detailsCard}>
       <CardContent sx={styles.detailsContent}>
         {/* Title */}
         <Typography
@@ -48,9 +48,13 @@ export default VehicleDetails;
 
 function BadgesList({ badges }: { badges: VehicleBadge[] }) {
   return (
-    <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+    <Box component="ul" sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
       {badges.map(({ key, label }) => {
-        return <Badge key={key} label={label} />;
+        return (
+          <Box component="li">
+            <Badge key={key} label={label} />
+          </Box>
+        );
       })}
     </Box>
   );

@@ -57,6 +57,20 @@ export const theme = createTheme({
     },
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        'ul, ol': {
+          listStyle: 'none',
+          margin: 0,
+          padding: 0,
+        },
+        'fieldset, legend': {
+          all: 'unset',
+          display: 'block',
+          width: '100%',
+        },
+      },
+    },
     MuiContainer: {
       defaultProps: {
         maxWidth: 'lg',

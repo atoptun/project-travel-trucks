@@ -11,7 +11,10 @@ interface ImageGaleryProps {
 
 function ImageGalery({ images, activeImage, onImageSelect }: ImageGaleryProps) {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+    <Box
+      component="section"
+      sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+    >
       <Box
         component="img"
         src={activeImage.original}
@@ -33,6 +36,7 @@ function ImageGalery({ images, activeImage, onImageSelect }: ImageGaleryProps) {
       />
 
       <Box
+        component="ul"
         sx={{
           display: 'flex',
           gap: 2,
@@ -52,37 +56,39 @@ function ImageGalery({ images, activeImage, onImageSelect }: ImageGaleryProps) {
         {images.map((img, index) => {
           const isActive = img === activeImage;
           return (
-            <Box
-              key={index}
-              component="img"
-              src={img.thumb}
-              alt={`Camper preview ${index + 1}`}
-              onClick={() => onImageSelect(img)}
-              sx={{
-                width: { xs: '80px', sm: '100px', md: '136px' },
-                height: { xs: '80px', sm: '100px', md: '144px' },
-                flexShrink: 0,
-                scrollSnapAlign: 'start',
-                borderRadius: '16px',
-                objectFit: 'cover',
-                cursor: 'pointer',
+            <Box component="li">
+              <Box
+                key={index}
+                component="img"
+                src={img.thumb}
+                alt={`Camper preview ${index + 1}`}
+                onClick={() => onImageSelect(img)}
+                sx={{
+                  width: { xs: '80px', sm: '100px', md: '136px' },
+                  height: { xs: '80px', sm: '100px', md: '144px' },
+                  flexShrink: 0,
+                  scrollSnapAlign: 'start',
+                  borderRadius: '16px',
+                  objectFit: 'cover',
+                  cursor: 'pointer',
 
-                backgroundColor: 'custom.inputs',
-                backgroundImage: `url("${camperPlaceholderUrl}")`,
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center',
-                backgroundSize: '40px 40px',
+                  backgroundColor: 'custom.inputs',
+                  backgroundImage: `url("${camperPlaceholderUrl}")`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  backgroundSize: '40px 40px',
 
-                border: '3px solid',
-                borderColor: isActive ? '#4E6151' : 'transparent',
-                opacity: isActive ? 1 : 0.7,
-                transition: 'all 0.2s ease',
+                  border: '3px solid',
+                  borderColor: isActive ? '#4E6151' : 'transparent',
+                  opacity: isActive ? 1 : 0.7,
+                  transition: 'all 0.2s ease',
 
-                '&:hover': {
-                  opacity: 1,
-                },
-              }}
-            />
+                  '&:hover': {
+                    opacity: 1,
+                  },
+                }}
+              />
+            </Box>
           );
         })}
       </Box>

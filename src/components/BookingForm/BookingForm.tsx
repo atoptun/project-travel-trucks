@@ -39,7 +39,7 @@ function BookingForm({ camperId }: BookingFormProps) {
     >
       <Typography
         variant="h6"
-        component="h3"
+        component="h2"
         color="textPrimary"
         sx={{ fontWeight: 600, mb: 1 }}
       >
