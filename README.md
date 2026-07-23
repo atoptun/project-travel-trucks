@@ -36,9 +36,6 @@ system and layout styling for all device resolutions.
 
 <img src="docs/images/design.png" alt="Travel Trucks FigmaDesign" width="300" />
 
-<a href="https://www.figma.com/design/5z5rANBjde8gmjv4L6WuQx/Travel-Trucks?node-id=48730-474&p=f&t=OQ86dIrLLEm6337g-0" target="_blank" rel="noopener noreferrer">Travel
-Trucks Figma Design</a>
-
 [Travel Trucks Figma Design](https://www.figma.com/design/5z5rANBjde8gmjv4L6WuQx/Travel-Trucks?node-id=48730-474&p=f&t=OQ86dIrLLEm6337g-0)
 
 ### Screenshot Gallery
