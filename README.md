@@ -31,8 +31,7 @@ reviews, bookmark favorite vehicles, and place instant booking requests.
 
 ### Figma Workspace
 
-The user interface is fully modeled in Figma, featuring a robust component
-system and layout styling for all device resolutions.
+The user interface is fully modelled in Figma.
 
 <img src="docs/images/design.png" alt="Travel Trucks FigmaDesign" width="300" />
 
@@ -40,8 +39,8 @@ system and layout styling for all device resolutions.
 
 ### Screenshot Gallery
 
-A dedicated gallery showcases the responsiveness and different views of the
-Travel Trucks application across desktop, tablet, and mobile views.
+A gallery showcases the responsiveness and different views of the Travel Trucks
+application across desktop, tablet, and mobile views.
 
 <img src="docs/images/desktop/home-desktop.png" alt="Travel Trucks Screenshot Gallery" width="300" />
 
