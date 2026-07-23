@@ -27,6 +27,33 @@ reviews, bookmark favorite vehicles, and place instant booking requests.
 
 ---
 
+## 🎨 Design
+
+### Figma Workspace
+
+The user interface is fully modeled in Figma, featuring a robust component
+system and layout styling for all device resolutions.
+
+<a href="https://www.figma.com/design/5z5rANBjde8gmjv4L6WuQx/Travel-Trucks?node-id=48730-474&p=f&t=OQ86dIrLLEm6337g-0" target="_blank" rel="noopener noreferrer">
+  <img src="docs/images/design.png" alt="Travel Trucks Figma Design" width="300" />
+</a>
+
+_Click the image above to access the Figma file._
+
+### Screenshot Gallery
+
+A dedicated gallery showcases the responsiveness and different views of the
+Travel Trucks application across desktop, tablet, and mobile views.
+
+<a href="docs/images/gallery.md">
+  <img src="docs/images/desktop/home-desktop.png" alt="Travel Trucks Screenshot Gallery" width="300" />
+</a>
+
+_Click the thumbnail above to view the
+[Screenshot Gallery](docs/images/gallery.md)._
+
+---
+
 ## Key Features
 
 - **Interactive Catalog & Filtering**: Search campers by location, vehicle body
